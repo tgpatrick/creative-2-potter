@@ -108,7 +108,7 @@ footer img {
 
 .neuSmall {
   border-radius: 10px;
-  color: #515151 !important;
+  color: #515151;
   background: linear-gradient(145deg, #e5e5e5, #c1c1c1);
   box-shadow: 7px 7px 14px #afafaf,
     -7px -7px 14px #fdfdfd;
@@ -130,14 +130,14 @@ footer img {
   }
 
   .neuSmall {
-    color: #dadada !important;
+    color: #dadada;
     background: linear-gradient(145deg, #494949, #3d3d3d);
     box-shadow: 7px 7px 14px #373737,
       -7px -7px 14px #727272;
   }
 
   .neuBig {
-    color: #dadada !important;
+    color: #dadada;
     background: linear-gradient(145deg, #494949, #3d3d3d);
     box-shadow: 30px 30px 59px #373737,
       -30px -30px 59px #515151;
