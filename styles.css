@@ -24,19 +24,24 @@ button,
   max-width: 500px;
   margin: 0 auto !important;
   top: 15px;
+  transition: .25;
 }
 
 h1 {
   max-width: 250px;
   margin: 0 auto;
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 button {
-  width: 4em;
-  height: 4em;
   line-height: .7em;
   transition: 1.5s;
+}
+
+.house button {
+  width: 4em;
+  height: 4em;
 }
 
 .house {
@@ -57,11 +62,33 @@ button {
   transition: .25s;
 }
 
+.results {
+  display: flex;
+  position: relative;
+  top: 45px;
+  margin: 0 auto !important;
+  padding: 30px !important;
+  min-height: 50px;
+  width: 250px;
+  transition: 1s;
+}
+
+.button-container {
+  margin: 0 auto;
+}
+
+.button-container button {
+  height: 3em;
+  width: 6em;
+  font-size: .95em;
+  margin: 5px;
+}
+
 footer {
   width: 3em;
   height: 3em;
   margin: 0 auto;
-  margin-top: 3em;
+  margin-top: 5em;
   text-align: center;
   transition: 1.5s;
 }
@@ -87,20 +114,22 @@ footer img {
 @media (prefers-color-scheme: dark) {
   body {
     color: #dadada;
-    background-color: #606060;
+    background-color: #444444;
   }
 
   .neuSmall {
-    background: linear-gradient(145deg, #676767, #565656);
-    box-shadow: 7px 7px 14px #4e4e4e,
+    color: #dadada !important;
+    background: linear-gradient(145deg, #494949, #3d3d3d);
+    box-shadow: 7px 7px 14px #373737,
       -7px -7px 14px #727272;
-    color: #dadada;
+    color: #515151;
   }
 
   .neuBig {
-    background: linear-gradient(145deg, #676767, #565656);
-    box-shadow: 30px 30px 59px #4e4e4e,
-      -30px -30px 59px #727272;
+    color: #dadada !important;
+    background: linear-gradient(145deg, #494949, #3d3d3d);
+    box-shadow: 30px 30px 59px #373737,
+      -30px -30px 59px #515151;
   }
 
   button

@@ -16,14 +16,49 @@ function reSort(e) {
   fetch(url)
     .then(function(response) {
       if (response.status != 200) {
+        console.log("Error: " + response.statusText);
         return {
-          text: "Sorting hat failed. Are you sure you're not a muggle? Error: " +
-            response.statusText
+          text: "Muggle"
         }
       }
       return response.json();
     }).then(function(json) {
       updateHouse(json);
+    })
+}
+
+function getCharacters(e) {
+  e.preventDefault();
+
+  let url = "https://www.potterapi.com/v1/characters" + "?key=" + key;
+  fetch(url)
+    .then(function(response) {
+      if (response.status != 200) {
+        return {
+          text: "Error fetching characters: " + response.statusText
+        }
+      }
+      return response.json();
+    }).then(function(json) {
+      console.log(json);
+    })
+}
+
+function getSpells(e) {
+  e.preventDefault();
+
+  let url = "https://www.potterapi.com/v1/spells" + "?key=" + key;
+  fetch(url)
+    .then(function(response) {
+      if (response.status != 200) {
+        console.log("Error: " + response.statusText);
+        return {
+          text: "Error fetching spells: " + response.statusText
+        }
+      }
+      return response.json();
+    }).then(function(json) {
+      console.log(json);
     })
 }
 
@@ -51,23 +86,35 @@ function updateHouse(house) {
     gradient = "linear-gradient(145deg, #6d6800, #5c5700)";
     smallShadow = "7px 7px 14px #534f00, -7px -7px 14px #797300";
     bigShadow = "30px 30px 60px #534f00, -30px -30px 60px #797300";
-  } else {
+  } else if (house == "Gryffindor") {
     color = lightText;
     background = gryffindor;
     gradient = "linear-gradient(145deg, #8c1200, #760f00)";
     smallShadow = "7px 7px 14px #6a0e00, -7px -7px 14px #9c1400";
     bigShadow = "30px 30px 60px #6a0e00, -30px -30px 60px #9c1400";
+  } else {
+    color = "#dadada";
+    background = "#444444";
+    gradient = "linear-gradient(145deg, #494949, #3d3d3d)";
+    smallShadow = "px 7px 14px #373737, -7px -7px 14px #727272;";
+    bigShadow = "30px 30px 59px #373737, -30px -30px 59px #515151";
   }
   let header = document.getElementById('header');
   let hat = document.getElementById('sortinghat');
   let yourHouse = document.getElementById('yourHouse');
   let body = document.getElementById('body');
+  let results = document.getElementById('results');
+  let characterButton = document.getElementById('characterButton');
+  let spellsButton = document.getElementById('spellsButton');
   let footer = document.getElementById('footer');
   editNeuStyle(header, color, background, bigShadow);
   editNeuStyle(hat, color, gradient, smallShadow);
   yourHouse.innerHTML = house;
   body.style.color = color;
   body.style.background = background;
+  editNeuStyle(results, color, background, bigShadow);
+  editNeuStyle(characterButton, color, gradient, smallShadow);
+  editNeuStyle(spellsButton, color, gradient, smallShadow);
   editNeuStyle(footer, color, gradient, smallShadow);
 
   document.getElementById('sortimg').src = "/hat.png";
@@ -80,3 +127,5 @@ function editNeuStyle(item, color, background, shadow) {
 }
 
 document.getElementById('sortinghat').addEventListener('click', reSort);
+document.getElementById('characterButton').addEventListener('click', getCharacters);
+document.getElementById('spellsButton').addEventListener('click', getSpells);
