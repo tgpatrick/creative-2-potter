@@ -1,0 +1,44 @@
+@font-face {
+  font-family: 'Harry Potter Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Harry Potter Regular'), url('HARRP___.woff') format('woff');
+}
+
+h1,
+button {
+  font-family: 'Harry Potter Regular';
+}
+
+body {
+  background-color: #d6d6d6;
+  color: #060606;
+  text-align: center;
+}
+
+footer {
+  width: 3em;
+  height: 3em;
+  margin: 0 auto;
+  border-radius: 10px;
+  background: linear-gradient(145deg, #e5e5e5, #c1c1c1);
+  box-shadow: 7px 7px 14px #adadad,
+    -7px -7px 14px #ffffff;
+  text-align: center;
+}
+
+img {
+  width: 80%;
+  margin-top: .25em;
+}
+
+button {
+  width: 4em;
+  height: 4em;
+  line-height: .7em;
+  border-radius: 10px;
+  background: linear-gradient(145deg, #e5e5e5, #c1c1c1);
+  box-shadow: 7px 7px 14px #adadad,
+    -7px -7px 14px #ffffff;
+  margin-bottom: 20px;
+}
