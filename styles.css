@@ -84,7 +84,8 @@ button {
   margin: 5px;
 }
 
-#spells {
+#spells,
+#characters {
   margin: 0 auto;
   max-width: 550px;
   max-height: 400px;

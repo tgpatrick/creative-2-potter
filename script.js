@@ -32,14 +32,9 @@ function getCharacters(e) {
   let results = document.getElementById('results');
   let spells = document.getElementById('spells');
   let characters = document.getElementById('characters');
-  if (spells.innerHTML != "") {
-    spells.style.padding = "0";
-    spells.style.marginTop = "0";
-    spells.innerHTML = "";
-    return;
-  } else if (characters.innerHTML != "") {
-    // characters.style.padding = "0";
-    // characters.style.marginTop = "0";
+  if (characters.innerHTML != "") {
+    characters.style.padding = "0";
+    characters.style.marginTop = "0";
     characters.innerHTML = "";
     return;
   }
@@ -55,46 +50,9 @@ function getCharacters(e) {
       }
       return response.json();
     }).then(function(json) {
-      results.style.maxWidth = "600px";
-      let table = document.createElement("table");
       let headKeys = ["Name", "House", "Death Eater", "Order of Phoenix", "Species"];
       let keys = ["name", "house", "deathEater", "orderOfThePhoenix", "species"];
-
-      let head = table.createTHead();
-      for (let key of headKeys) {
-        let th = document.createElement("th");
-        let text = document.createTextNode(key);
-        th.appendChild(text);
-        head.appendChild(th);
-      }
-
-      function makeRow(spell) {
-        let newRow = table.insertRow();
-        for (let key of keys) {
-          let td = document.createElement("td");
-          let text;
-          if (spell[key] == undefined) {
-            text = document.createTextNode("n/a");
-          } else {
-            text = document.createTextNode(spell[key]);
-          }
-          td.appendChild(text);
-          td.style.border = "1px solid black";
-          td.style.fontWeight = "normal";
-          newRow.appendChild(td);
-        }
-      }
-
-      for (let spell of json) {
-        makeRow(spell);
-      }
-
-      table.style.borderCollapse = "collapse";
-      table.style.margin = "10px";
-      spells.style.padding = "7px";
-      spells.style.marginTop = "15px";
-      spells.style.transition = "1s";
-      spells.appendChild(table);
+      makeTable(headKeys, keys, json, characters, spells);
     })
 }
 
@@ -103,10 +61,7 @@ function getSpells(e) {
   let results = document.getElementById('results');
   let spells = document.getElementById('spells');
   let characters = document.getElementById('characters');
-  if (characters.innerHTML != "") {
-    characters.innerHTML = "";
-    return;
-  } else if (spells.innerHTML != "") {
+  if (spells.innerHTML != "") {
     spells.style.padding = "0";
     spells.style.marginTop = "0";
     spells.innerHTML = "";
@@ -124,42 +79,56 @@ function getSpells(e) {
       }
       return response.json();
     }).then(function(json) {
-      results.style.maxWidth = "600px";
-      let table = document.createElement("table");
       let headKeys = ["Spell", "Type", "Effect"];
       let keys = ["spell", "type", "effect"];
-
-      let head = table.createTHead();
-      for (let key of headKeys) {
-        let th = document.createElement("th");
-        let text = document.createTextNode(key);
-        th.appendChild(text);
-        head.appendChild(th);
-      }
-
-      function makeRow(spell) {
-        let newRow = table.insertRow();
-        for (let key of keys) {
-          let td = document.createElement("td");
-          let text = document.createTextNode(spell[key]);
-          td.appendChild(text);
-          td.style.border = "1px solid black";
-          td.style.fontWeight = "normal";
-          newRow.appendChild(td);
-        }
-      }
-
-      for (let spell of json) {
-        makeRow(spell);
-      }
-
-      table.style.borderCollapse = "collapse";
-      table.style.margin = "10px";
-      spells.style.padding = "7px";
-      spells.style.marginTop = "15px";
-      spells.style.transition = "1s";
-      spells.appendChild(table);
+      makeTable(headKeys, keys, json, spells, characters);
     })
+}
+
+function makeTable(headKeys, keys, json, div, opposite) {
+  results.style.maxWidth = "600px";
+  let table = document.createElement("table");
+  let head = table.createTHead();
+  for (let key of headKeys) {
+    let th = document.createElement("th");
+    let text = document.createTextNode(key);
+    th.appendChild(text);
+    head.appendChild(th);
+  }
+
+  function makeRow(jsonItem) {
+    let newRow = table.insertRow();
+    for (let key of keys) {
+      let td = document.createElement("td");
+      let text;
+      if (jsonItem[key] == undefined) {
+        text = document.createTextNode("n/a");
+      } else {
+        text = document.createTextNode(jsonItem[key]);
+      }
+      td.appendChild(text);
+      td.style.border = "1px solid black";
+      td.style.fontWeight = "normal";
+      newRow.appendChild(td);
+    }
+  }
+
+  for (let jsonItem of json) {
+    makeRow(jsonItem);
+  }
+
+  table.style.borderCollapse = "collapse";
+  // table.style.margin = "10px";
+  table.style.margin = "0 auto";
+  div.style.padding = "7px";
+  div.style.marginTop = "15px";
+  div.style.transition = "1s";
+  if (opposite.innerHTML != "") {
+    opposite.innerHTML = "";
+    opposite.style.padding = "0";
+    opposite.style.marginTop = "0";
+  }
+  div.appendChild(table);
 }
 
 function updateHouse(house) {
