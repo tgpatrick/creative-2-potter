@@ -90,26 +90,31 @@ function makeTable(headKeys, keys, json, div, opposite) {
   let table = document.createElement("table");
   let head = table.createTHead();
   for (let key of headKeys) {
-    let th = document.createElement("th");
-    let text = document.createTextNode(key);
-    th.appendChild(text);
-    head.appendChild(th);
+    if (!(window.innerWidth < 480 && key == "Species")) {
+      let th = document.createElement("th");
+      let text = document.createTextNode(key);
+      th.appendChild(text);
+      head.appendChild(th);
+    }
   }
+  console.log(window.innerWidth);
 
   function makeRow(jsonItem) {
     let newRow = table.insertRow();
     for (let key of keys) {
-      let td = document.createElement("td");
-      let text;
-      if (jsonItem[key] == undefined) {
-        text = document.createTextNode("n/a");
-      } else {
-        text = document.createTextNode(jsonItem[key]);
+      if (!(window.innerWidth < 480 && key == "species")) {
+        let td = document.createElement("td");
+        let text;
+        if (jsonItem[key] == undefined) {
+          text = document.createTextNode("n/a");
+        } else {
+          text = document.createTextNode(jsonItem[key]);
+        }
+        td.appendChild(text);
+        td.style.border = "1px solid black";
+        td.style.fontWeight = "normal";
+        newRow.appendChild(td);
       }
-      td.appendChild(text);
-      td.style.border = "1px solid black";
-      td.style.fontWeight = "normal";
-      newRow.appendChild(td);
     }
   }
 
