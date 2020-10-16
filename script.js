@@ -10,6 +10,7 @@ function reSort(e) {
   e.preventDefault();
 
   document.getElementById('sortimg').src = "/loading.gif";
+  document.getElementById('yourHouse').innerHTML = "";
 
   let url = "https://www.potterapi.com/v1/sortingHat";
   fetch(url)
@@ -52,10 +53,10 @@ function updateHouse(house) {
     gradient = "linear-gradient(145deg, #8c1200, #760f00)";
     shadow = "7px 7px 14px #6a0e00, -7px -7px 14px #9c1400";
   }
-  debugger
   let body = document.getElementById('body');
   let footer = document.getElementById('footer');
   let hat = document.getElementById('sortinghat');
+  let yourHouse = document.getElementById('yourHouse');
   body.style.color = color;
   body.style.background = background;
   footer.style.background = gradient;
@@ -63,6 +64,7 @@ function updateHouse(house) {
   hat.style.color = color;
   hat.style.background = gradient;
   hat.style.boxShadow = shadow;
+  yourHouse.innerHTML = house;
 
   document.getElementById('sortimg').src = "/hat.png";
 }
