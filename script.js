@@ -31,42 +31,52 @@ function updateHouse(house) {
   let color;
   let background;
   let gradient;
-  let shadow;
+  let smallShadow;
+  let bigShadow;
   if (house == "Ravenclaw") {
     color = lightText;
     background = ravenclaw;
     gradient = "linear-gradient(145deg, #003183, #00296e)";
-    shadow = "7px 7px 14px #002563, -7px -7px 14px #003791";
+    smallShadow = "7px 7px 14px #002563, -7px -7px 14px #003791";
+    bigShadow = "30px 30px 60px #002563, -30px -30px 60px #003791";
   } else if (house == "Slytherin") {
     color = lightText;
     background = slytherin;
     gradient = "linear-gradient(145deg, #3c5d1c, #324e17)";
-    shadow = "7px 7px 14px #2d4615, -7px -7px 14px #43681f";
+    smallShadow = "7px 7px 14px #2d4615, -7px -7px 14px #43681f";
+    bigShadow = "30px 30px 60px #2d4615, -30px -30px 60px #43681f";
   } else if (house == "Hufflepuff") {
     color = darkText;
     background = hufflepuff;
     gradient = "linear-gradient(145deg, #6d6800, #5c5700)";
-    shadow = "7px 7px 14px #534f00, -7px -7px 14px #797300";
+    smallShadow = "7px 7px 14px #534f00, -7px -7px 14px #797300";
+    bigShadow = "30px 30px 60px #534f00, -30px -30px 60px #797300";
   } else {
     color = lightText;
     background = gryffindor;
     gradient = "linear-gradient(145deg, #8c1200, #760f00)";
-    shadow = "7px 7px 14px #6a0e00, -7px -7px 14px #9c1400";
+    smallShadow = "7px 7px 14px #6a0e00, -7px -7px 14px #9c1400";
+    bigShadow = "30px 30px 60px #6a0e00, -30px -30px 60px #9c1400";
   }
-  let body = document.getElementById('body');
-  let footer = document.getElementById('footer');
+  let header = document.getElementById('header');
   let hat = document.getElementById('sortinghat');
   let yourHouse = document.getElementById('yourHouse');
+  let body = document.getElementById('body');
+  let footer = document.getElementById('footer');
+  editNeuStyle(header, color, background, bigShadow);
+  editNeuStyle(hat, color, gradient, smallShadow);
+  yourHouse.innerHTML = house;
   body.style.color = color;
   body.style.background = background;
-  footer.style.background = gradient;
-  footer.style.boxShadow = shadow;
-  hat.style.color = color;
-  hat.style.background = gradient;
-  hat.style.boxShadow = shadow;
-  yourHouse.innerHTML = house;
+  editNeuStyle(footer, color, gradient, smallShadow);
 
   document.getElementById('sortimg').src = "/hat.png";
+}
+
+function editNeuStyle(item, color, background, shadow) {
+  item.style.color = color;
+  item.style.background = background;
+  item.style.boxShadow = shadow;
 }
 
 document.getElementById('sortinghat').addEventListener('click', reSort);

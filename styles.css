@@ -5,12 +5,6 @@
   src: local('Harry Potter Regular'), url('HARRP___.woff') format('woff');
 }
 
-h1,
-button,
-#yourHouse {
-  font-family: 'Harry Potter Regular';
-}
-
 body {
   background-color: #d6d6d6;
   color: #060606;
@@ -19,37 +13,43 @@ body {
   transition: 1s;
 }
 
-footer {
-  width: 3em;
-  height: 3em;
+h1,
+button,
+#yourHouse {
+  font-family: 'Harry Potter Regular';
+}
+
+.header {
+  position: relative;
+  max-width: 500px;
+  margin: 0 auto !important;
+  top: 15px;
+}
+
+h1 {
+  max-width: 250px;
   margin: 0 auto;
-  text-align: center;
-  transition: 1.5s;
-}
-
-.house img {
-  width: 80%;
-  height: 50%;
-  margin-top: .25em;
-}
-
-footer img {
-  width: 80%;
-  margin-top: .3em;
+  margin-bottom: 20px;
 }
 
 button {
   width: 4em;
   height: 4em;
   line-height: .7em;
-  margin-bottom: 20px;
   transition: 1.5s;
 }
 
 .house {
+  height: 4em;
   display: flex;
   justify-content: center;
   margin: 0 auto;
+}
+
+.house img {
+  width: 80%;
+  max-height: 50%;
+  margin-top: .25em;
 }
 
 #yourHouse {
@@ -57,14 +57,32 @@ button {
   transition: .25s;
 }
 
-.neuSmall {
-  border-radius: 10px;
-  background: linear-gradient(145deg, #e5e5e5, #c1c1c1);
-  box-shadow: 7px 7px 14px #adadad,
-    -7px -7px 14px #ffffff;
+footer {
+  width: 3em;
+  height: 3em;
+  margin: 0 auto;
+  margin-top: 3em;
+  text-align: center;
+  transition: 1.5s;
 }
 
-.neuBig {}
+footer img {
+  width: 80%;
+  margin-top: .3em;
+}
+
+.neuSmall {
+  border-radius: 10px;
+}
+
+.neuBig {
+  margin: 25px;
+  padding: 15px;
+  border-radius: 45px;
+  background: linear-gradient(145deg, #e5e5e5, #c1c1c1);
+  box-shadow: 30px 30px 59px #adadad,
+    -30px -30px 59px #ffffff;
+}
 
 @media (prefers-color-scheme: dark) {
   body {
@@ -73,11 +91,16 @@ button {
   }
 
   .neuSmall {
-    border-radius: 10px;
     background: linear-gradient(145deg, #676767, #565656);
     box-shadow: 7px 7px 14px #4e4e4e,
       -7px -7px 14px #727272;
     color: #dadada;
+  }
+
+  .neuBig {
+    background: linear-gradient(145deg, #676767, #565656);
+    box-shadow: 30px 30px 59px #4e4e4e,
+      -30px -30px 59px #727272;
   }
 
   button
