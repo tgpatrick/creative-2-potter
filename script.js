@@ -29,6 +29,20 @@ function reSort(e) {
 
 function getCharacters(e) {
   e.preventDefault();
+  let results = document.getElementById('results');
+  let spells = document.getElementById('spells');
+  let characters = document.getElementById('characters');
+  if (spells.innerHTML != "") {
+    spells.style.padding = "0";
+    spells.style.marginTop = "0";
+    spells.innerHTML = "";
+    return;
+  } else if (characters.innerHTML != "") {
+    // characters.style.padding = "0";
+    // characters.style.marginTop = "0";
+    characters.innerHTML = "";
+    return;
+  }
 
   let url = "https://www.potterapi.com/v1/characters" + "?key=" + key;
   fetch(url)
@@ -46,6 +60,18 @@ function getCharacters(e) {
 
 function getSpells(e) {
   e.preventDefault();
+  let results = document.getElementById('results');
+  let spells = document.getElementById('spells');
+  let characters = document.getElementById('characters');
+  if (characters.innerHTML != "") {
+    characters.innerHTML = "";
+    return;
+  } else if (spells.innerHTML != "") {
+    spells.style.padding = "0";
+    spells.style.marginTop = "0";
+    spells.innerHTML = "";
+    return;
+  }
 
   let url = "https://www.potterapi.com/v1/spells" + "?key=" + key;
   fetch(url)
@@ -58,7 +84,41 @@ function getSpells(e) {
       }
       return response.json();
     }).then(function(json) {
-      console.log(json);
+      results.style.maxWidth = "600px";
+      let table = document.createElement("table");
+      let headKeys = ["Spell", "Type", "Effect"];
+      let keys = ["spell", "type", "effect"];
+
+      let head = table.createTHead();
+      for (let key of headKeys) {
+        let th = document.createElement("th");
+        let text = document.createTextNode(key);
+        th.appendChild(text);
+        head.appendChild(th);
+      }
+
+      function makeRow(spell) {
+        let newRow = table.insertRow();
+        for (let key of keys) {
+          let td = document.createElement("td");
+          let text = document.createTextNode(spell[key]);
+          td.appendChild(text);
+          td.style.border = "1px solid black";
+          td.style.fontWeight = "normal";
+          newRow.appendChild(td);
+        }
+      }
+
+      for (let spell of json) {
+        makeRow(spell);
+      }
+
+      table.style.borderCollapse = "collapse";
+      table.style.margin = "10px";
+      spells.style.padding = "7px";
+      spells.style.marginTop = "15px";
+      spells.style.transition = "1s";
+      spells.appendChild(table);
     })
 }
 
@@ -106,6 +166,8 @@ function updateHouse(house) {
   let results = document.getElementById('results');
   let characterButton = document.getElementById('characterButton');
   let spellsButton = document.getElementById('spellsButton');
+  let characters = document.getElementById('characters');
+  let spells = document.getElementById('spells');
   let footer = document.getElementById('footer');
   editNeuStyle(header, color, background, bigShadow);
   editNeuStyle(hat, color, gradient, smallShadow);
@@ -115,6 +177,8 @@ function updateHouse(house) {
   editNeuStyle(results, color, background, bigShadow);
   editNeuStyle(characterButton, color, gradient, smallShadow);
   editNeuStyle(spellsButton, color, gradient, smallShadow);
+  editNeuStyle(characters, color, background, smallShadow);
+  editNeuStyle(spells, color, background, smallShadow);
   editNeuStyle(footer, color, gradient, smallShadow);
 
   document.getElementById('sortimg').src = "/hat.png";

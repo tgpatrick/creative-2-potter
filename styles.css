@@ -40,6 +40,7 @@ button {
 }
 
 .house button {
+  font-size: .85em;
   width: 4em;
   height: 4em;
 }
@@ -63,13 +64,12 @@ button {
 }
 
 .results {
-  display: flex;
   position: relative;
-  top: 45px;
+  top: 100px;
   margin: 0 auto !important;
   padding: 30px !important;
   min-height: 50px;
-  width: 250px;
+  max-width: 250px;
   transition: 1s;
 }
 
@@ -84,11 +84,18 @@ button {
   margin: 5px;
 }
 
+#spells {
+  margin: 0 auto;
+  max-width: 550px;
+  max-height: 400px;
+  overflow: scroll;
+}
+
 footer {
   width: 3em;
   height: 3em;
   margin: 0 auto;
-  margin-top: 5em;
+  margin-top: 10em;
   text-align: center;
   transition: 1.5s;
 }
