@@ -108,6 +108,10 @@ footer img {
 
 .neuSmall {
   border-radius: 10px;
+  color: #515151 !important;
+  background: linear-gradient(145deg, #e5e5e5, #c1c1c1);
+  box-shadow: 7px 7px 14px #afafaf,
+    -7px -7px 14px #fdfdfd;
 }
 
 .neuBig {
@@ -130,7 +134,6 @@ footer img {
     background: linear-gradient(145deg, #494949, #3d3d3d);
     box-shadow: 7px 7px 14px #373737,
       -7px -7px 14px #727272;
-    color: #515151;
   }
 
   .neuBig {
