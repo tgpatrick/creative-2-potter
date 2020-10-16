@@ -4,16 +4,20 @@
 <head>
   <link rel="stylesheet" href="/styles.css" />
   <title>Harry Potter Quick Reference</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body id="body">
   <div class="header">
     <h1>Harry Potter Quick Reference</h1>
-    <p id="test">Hello, world!</p>
-    <button id="sortinghat" class="button">
-      <img id=sortimg src="/hat.png" alt="Find your house">
-      Sort
-    </button>
+    <div class="house">
+      <p>Your house: </p>
+      <p id="yourHouse">None</p>
+      <button id="sortinghat" class="button">
+        <img id=sortimg src="/hat.png" alt="Find your house">
+        Sort
+      </button>
+    </div>
   </div>
 
   <div class="results">
