@@ -48,13 +48,53 @@ function getCharacters(e) {
   fetch(url)
     .then(function(response) {
       if (response.status != 200) {
+        console.log("Error: " + response.statusText);
         return {
           text: "Error fetching characters: " + response.statusText
         }
       }
       return response.json();
     }).then(function(json) {
-      console.log(json);
+      results.style.maxWidth = "600px";
+      let table = document.createElement("table");
+      let headKeys = ["Name", "House", "Death Eater", "Order of Phoenix", "Species"];
+      let keys = ["name", "house", "deathEater", "orderOfThePhoenix", "species"];
+
+      let head = table.createTHead();
+      for (let key of headKeys) {
+        let th = document.createElement("th");
+        let text = document.createTextNode(key);
+        th.appendChild(text);
+        head.appendChild(th);
+      }
+
+      function makeRow(spell) {
+        let newRow = table.insertRow();
+        for (let key of keys) {
+          let td = document.createElement("td");
+          let text;
+          if (spell[key] == undefined) {
+            text = document.createTextNode("n/a");
+          } else {
+            text = document.createTextNode(spell[key]);
+          }
+          td.appendChild(text);
+          td.style.border = "1px solid black";
+          td.style.fontWeight = "normal";
+          newRow.appendChild(td);
+        }
+      }
+
+      for (let spell of json) {
+        makeRow(spell);
+      }
+
+      table.style.borderCollapse = "collapse";
+      table.style.margin = "10px";
+      spells.style.padding = "7px";
+      spells.style.marginTop = "15px";
+      spells.style.transition = "1s";
+      spells.appendChild(table);
     })
 }
 
